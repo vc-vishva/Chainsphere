@@ -59,28 +59,7 @@ export class UserService {
     return this.userModel.create(userProfile);
   }
 
-  /**
-   * Description - Create Admin common function
-   * @param createAdminDto CreateAdminDto
-   * @returns Admin
-   */
-  async createAdmin(userData: Partial<CreateAdminDto>): Promise<Partial<UserDocument>> {
-    const userProfile = {
-      ...userData,
-      streetAddress: '',
-      city: '',
-      state: '',
-      country: '',
-      profilePicture: '',
-      zipCode: '',
-    };
-    const admin = await this.userModel.create(userProfile);
-    if (admin) {
-      const userDonationPageUrl = `${Defaults.USER_DONATION_PAGE_URL}${admin._id.toString()}`;
-      await admin.updateOne({ userDonationPageUrl });
-    }
-    return admin;
-  }
+ 
 
  
 
