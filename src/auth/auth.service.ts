@@ -11,7 +11,6 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
-import * as moment from 'moment';
 import { FilterQuery, Model, Types } from 'mongoose';
 import { CommonService } from '../common/common.service';
 import { Defaults } from '../common/configs/default.config';
@@ -21,8 +20,6 @@ import { EmailTemplatePath, OnlyMessageResponse } from '../common/types';
 import { LoginResponse } from '../user/types';
 import { UserService } from '../user/user.service';
 import { ResponseHandler } from '../utils/response-handler';
-import { AdminForgotPasswordDto } from './dtos/admin-forgot-password.dto';
-import { CreateAdminDto } from './dtos/create.admin.dto';
 import { CreateUserDto } from './dtos/create.user.dto';
 import { ForgotPasswordDto } from './dtos/forgot-password.dto';
 import { UserLoginDto } from './dtos/login.dto';
@@ -49,145 +46,6 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
-  //*******************************************************************Admin services*******************************************************************/
-  /**
-   * Description - Admin signup service
-   * @param createUserDto CreateUserDto
-   * @returns Common success | error response
-   */
-  async signup(createAdminDto: CreateAdminDto, validApiKey: boolean): OnlyMessageResponse {
-    if (!validApiKey) return ResponseHandler.error([], errorMessages.UNAUTHORIZED_REQUEST, HttpStatus.UNAUTHORIZED);
-
-    const adminUserWithEmail = await this.userService.getUserJson({
-      email: createAdminDto.email,
-      userType: 'Admin',
-    });
-
-    if (adminUserWithEmail) {
-      throw new ConflictException(errorMessages.USER_ALREADY_REGISTERED);
-    }
-
-    createAdminDto['userType'] = 'Admin';
-    const merchant = await this.userService.createAdmin(createAdminDto);
-    // send notification email the new admin on boarding our system
-    await this.commonMailService
-      .sendEmailWithTemplate(
-        {
-          organizationName: `${createAdminDto.merchantName}`,
-          organizationEmail: createAdminDto.email,
-          date: moment(new Date()).startOf('day').format('MMMM D, YYYY'),
-          donorProfileUrl: undefined,
-        },
-        EmailTemplatePath.ADMIN_JOIN_COMMUNITY,
-        {},
-        {
-          to: [`${this.configService.get('SUPER_ADMIN_EMAIL')}`, `${this.configService.get('SUPER_ADMIN_EMAIL_2')}`],
-          cc: [`${this.configService.get('CC_EMAIL_1')}`, `${this.configService.get('CC_EMAIL_2')}`],
-          subject: Defaults.NEW_ADMIN_JOIN_COMMUNITY_SUBJECT,
-        },
-      )
-      .then(() => {
-        return true;
-      })
-      .catch(() => {
-        throw new InternalServerErrorException(errorMessages.SENT_EMAIL_FAILED);
-      });
-    return ResponseHandler.success([], successMessages.USER_SIGNUP, HttpStatus.OK);
-  }
-
-
- 
-
-  /**
-   * Description - Admin login service
-   * @param userLoginDto UserLoginDto
-   * @returns Admin Details with access token
-   */
-  async login(loginDto: UserLoginDto): LoginResponse {
-    const admin = await this.userService.getUser({ userType: 'Admin', email: loginDto.email }, true);
-
-    if (!admin) throw new NotFoundException(errorMessages.INCORRECT_DETAILS);
-
-    if (!admin.emailVerified) throw new NotAcceptableException(errorMessages.EMAIL_NOT_VERIFIED);
-    const passwordCheck = await admin.validatePassword(loginDto.password);
-
-    if (!passwordCheck) {
-      throw new UnauthorizedException(errorMessages.INCORRECT_DETAILS);
-    }
-
-    const payload = {
-      _id: admin._id,
-      email: admin.email,
-      userType: admin.userType,
-    };
-
-    const accessToken = await this.jwtService.signAsync(payload);
-
-    return ResponseHandler.success(
-      {
-        _id: admin._id,
-        profilePicture: admin.profilePicture,
-        phoneNumber: admin.phoneNumber,
-        appliedForMerchantApp: admin.appliedForMerchantApp,
-        email: admin.email,
-        merchantName: admin.merchantName,
-        paymentGateway: admin.paymentGateway,
-        accessToken,
-        isProfileLive: admin.isProfileLive,
-        availableForCelebration: admin.availableForCelebration,
-      },
-      successMessages.ADMIN_LOGGED_IN,
-      HttpStatus.OK,
-    );
-  }
-
-  /**
-   * Description - Admin Forgot password service
-   * @param forgotPasswordDto SendEmailDto
-   * @returns Common success | error response
-   */
-  async adminForgotPassword(adminForgotPasswordDto: AdminForgotPasswordDto): OnlyMessageResponse {
-    const admin = await this.userService.getUser({
-      email: adminForgotPasswordDto.email,
-      userType: 'Admin',
-    });
-    if (!admin) throw new NotFoundException(errorMessages.USER_NOT_REGISTERED);
-
-    if (!admin.emailVerified) throw new BadRequestException(errorMessages.EMAIL_NOT_VERIFIED);
-
-    const resetPasswordToken = this.commonService.generateToken(12);
-
-    await this.createResetPasswordToken({
-      userId: admin._id,
-      token: resetPasswordToken,
-    });
-
-    const redirectUrl = `${Defaults.ADMIN_RESET_PASSWORD_URL}?token=${resetPasswordToken}`;
-    await this.commonMailService
-      .sendEmailWithTemplate(
-        {
-          name: `${admin.merchantName}`,
-          email: admin.email,
-          redirectUrl,
-          donorProfileUrl: undefined,
-        },
-        EmailTemplatePath.FORGOT_PASSWORD,
-        {},
-        {
-          to: admin.email,
-          subject: Defaults.FORGOT_PASSWORD_SUBJECT,
-        },
-      )
-      .then(() => {
-        return true;
-      })
-      .catch(() => {
-        throw new InternalServerErrorException(errorMessages.SENT_EMAIL_FAILED);
-      });
-
-    return ResponseHandler.success([], successMessages.FORGOT_PASSWORD, HttpStatus.OK);
-  }
-  //*******************************************************************User services*******************************************************************/
   /**
    * Description - User signup service
    * @param createUserDto CreateUserDto
@@ -255,7 +113,6 @@ export class AuthService {
     );
   }
 
-  //*******************************************************************Common auth services*******************************************************************/
 
   /**
    * Description - Forgot password service
