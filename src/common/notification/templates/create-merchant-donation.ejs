@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Merchant donation</title>
+</head>
+
+<body style="background-color: #f4f9ff">
+  <table style="width: 550px; border: 1px solid #ccc; margin: 0 auto; border-radius: 5px; background-color: #f8f8f8">
+    <tr>
+      <td style="background-color: #fff; padding: 30px; text-align: center">
+        <img style="max-width: 250px"
+          src="https://vc-development-public.s3.ap-south-1.amazonaws.com/bannerLogo170730536190733-1707305361907.png" />
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px 50px">
+        <p style="line-height: 1.6; margin-bottom: 10px">Dear <strong><%= organizationName %></strong>,</p>
+
+        <p style="line-height: 1.6; margin-top: 0px">We are pleased to inform you that the donation made on behalf of <strong><%= donorName %></strong> has been successfully processed.</p>
+        <p style="line-height: 1.6; margin-top: 0px">Here are the details of the transaction:</p>
+        <p style="line-height: 1.6; margin-top: 0px"><strong> Donation Details:</strong></p>
+
+          <p style="line-height: 1.6; margin-bottom: 10px"><strong> Donor Name:</strong> <%= donorName %>,</p>
+          <p style="line-height: 1.6; margin-bottom: 10px"><strong> Donation Amount:</strong> <%= donationAmount %>,</p>
+          <p style="line-height: 1.6; margin-bottom: 10px"><strong> Cause</strong> <%= causeName %>,</p>
+          <p style="line-height: 1.6; margin-bottom: 10px"><strong> Transaction ID</strong> <%= transactionId %>,</p>
+          <p style="line-height: 1.6; margin-bottom: 10px"><strong> Date of Donation</strong> <%= donationDate %>,</p>
+
+
+        <p style="line-height: 1.6; margin-top: 0px">If you have any questions or require further assistance, please do not hesitate to contact us.</p>
+        <p style="line-height: 1.6; margin-top: 0px">Thank you for your continued support and for facilitating this donation.</p>
+      </td>
+    </tr>
+
+    <tr></tr>
+    <td style="padding: 0px 50px 20px 50px; text-align: center">
+      <p style="margin: 0">Powered by Pro-Life Prosper</p>
+    </td>
+    </tr>
+
+    <td style="padding: 0px 50px 20px 50px; text-align: left">
+      <p style="margin-top: 0; margin-bottom: 0; text-decoration:none;">
+        <% if (donorProfileUrl) { %>
+          <a href="<%= donorProfileUrl %>">Manage your donation</a>
+          mail us at <a href="mailto:support@prolifepayments.com"
+            style="text-decoration:none;">support@prolifepayments.com</a> for any help.
+          <% } else { %>
+            Mail us at <a href="mailto:support@prolifepayments.com"
+              style="text-decoration:none;">support@prolifepayments.com</a> for any help.
+            <% } %>
+      </p>
+      <!-- <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr> -->
+
+      <p style="text-align: left; border-bottom: 1px solid #ccc"></p>
+
+      <p style="margin-top: 0; text-align: left">
+        <strong>Confidentiality Notice</strong>: This email and any attachments are confidential and intended only for
+        the recipient(s) named. If you received this email by mistake, please notify the sender immediately and delete
+        this. Unauthorized use, disclosure or distribution is prohibited and may be unlawful.
+      </p>
+    </td>
+
+  </table>
+</body>
+
+</html>

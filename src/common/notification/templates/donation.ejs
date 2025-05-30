@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hello, World!</title>
+</head>
+
+<body style="background-color: #f4f9ff;padding: 20px 0;">
+  <table
+    style="width: 550px;border: 1px solid #ccc;margin: 25px auto 20px; border-radius: 5px;background-color: #f8f8f8;">
+    <tr>
+      <td style="background-color: #fff;padding: 30px;text-align:center;">
+        <img style="max-width: 250px;"
+          src="https://vc-development-public.s3.ap-south-1.amazonaws.com/bannerLogo170730536190733-1707305361907.png" />
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px 50px;">
+        <p style="line-height: 1.6; margin-bottom: 10px;">
+          Dear <strong><%= name %></strong>,
+        </p>
+        <p style="line-height: 1.6; margin-top: 0px;">
+          Thank you for your unwavering support and belief in our mission to
+          "<strong><%= causeName %></strong>". Your generosity is making
+          a profound difference.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding: 20px 50px;">
+        <table
+          style="width: 100%;border: 1px solid #eee;margin: 0 auto; border-radius: 5px;background-color: #fff;padding: 20px;">
+          <tr>
+            <td colspan="2" style="text-align: center;">
+              <p style="margin:0;">You have donated</p>
+            </td>
+          </tr>
+          <tr>
+          <td colspan="2" style="text-align: center;">
+            <p style="font-size: 30px;margin-top: 5px; margin-bottom: 0px; font-weight: bold;"><strong>$<%=donationAmount %></strong></p>
+          </td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">
+        <p style="font-size: 14px;margin-top: 7px;color: #666;margin-bottom:7px;">Donation Date</p>
+      </td>
+      <td style="text-align: right;">
+        <p
+          style="font-size: 14px;margin-top: 7px;font-weight: 500;font-weight: 500; color: #000000;margin-bottom: 7px;">
+
+          <%=donationDate%>
+
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">
+        <p style="font-size: 14px;margin-top: 7px;color: #666;margin-bottom:7px;">Donor Name</p>
+      </td>
+      <td style="text-align: right;">
+        <p style="font-size: 14px;margin-top: 7px;font-weight: 500; color: #000000;margin-bottom:7px;">
+
+          <%=donorName%>
+
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">
+        <p style="font-size: 14px;margin-top: 7px;color: #666;margin-bottom:7px;">Merchant Name</p>
+      </td>
+      <td style="text-align: right;">
+        <p style="font-size: 14px;margin-top: 7px;font-weight: 500; color: #000000;margin-bottom:7px;">
+
+          <%=organizationName%>
+
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">
+        <p style="font-size: 14px;margin-top: 7px;color: #666;margin-bottom:7px;">Subscription</p>
+      </td>
+      <td style="text-align: right;">
+        <p style="font-size: 14px;margin-top: 7px;color: blue;margin-bottom:0px;">
+
+          <%=donationType%>
+
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+    <td style="text-align: left;">
+      <p style="font-size: 14px;margin-top: 7px;color: #666;margin-bottom:7px;">Payment Method</p>
+    </td>
+    <td style="text-align: right;">
+      <p style="font-size: 14px;margin-top: 7px;font-weight: 500; color: #000000;margin-bottom:7px;">
+
+        <%=paymentMethod%>
+
+      </p>
+    </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+    <td style="text-align: left;">
+      <p style="font-size: 14px;margin-top: 7px;color: #666;margin-bottom:7px;">Surcharge</p>
+    </td>
+    <td style="text-align: right;">
+      <p style="font-size: 14px; margin-top: 7px; font-weight: 500; color: #000000; margin-bottom: 7px;">
+        $<%=transactionFees%>
+      </p>
+    </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+    <td style="text-align: left;">
+      <p style="font-size: 14px;margin-top: 7px;color: #666;margin-bottom:7px;">Transaction #</p>
+    </td>
+    <td style="text-align: right;">
+      <p style="font-size: 14px;margin-top: 7px;font-weight: 500; color: #000000;margin-bottom:7px;">
+
+        <%=transactionId%>
+
+      </p>
+    </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;">
+        <p>Thank you for your generous donation!</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;">
+        <p style="margin: 0; ">Sincerely,</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;">
+        <p style="margin: 0; font-weight: 500; color: #000000;">
+          Pro-Life Prosper
+        </p>
+      </td>
+    </tr>
+
+
+  </table>
+  </td>
+  </tr>
+
+  <tr>
+    <td style="padding: 0px 50px 20px 50px; text-align: center;">
+      <p style="margin: 0;">Powered by Pro-Life Prosper</p>
+    </td>
+  </tr>
+  <tr><td style="padding:0px 50px 20px 50px; text-align: left;">
+    <p style="margin-top: 0; margin-bottom: 0; text-decoration:none;">
+      <% if (donorProfileUrl) { %>
+        <a href="<%= donorProfileUrl %>">Manage your donation</a>
+        mail us at <a href="mailto:support@prolifepayments.com"
+          style="text-decoration:none;">support@prolifepayments.com</a> for any help.
+        <% } else { %>
+          Mail us at <a href="mailto:support@prolifepayments.com"
+            style="text-decoration:none;">support@prolifepayments.com</a> for any help.
+          <% } %>
+    </p>
+    <!-- <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr> -->
+
+    <p style="text-align: left;border-bottom: 1px solid #ccc;"></p>
+
+    <p style="margin-top: 0; text-align: left; font-size: 12px">
+      <strong>Confidentiality Notice</strong>: This email and any attachments are confidential and intended only for the
+      recipient(s) named. If you received this email by mistake, please notify the sender immediately and delete this.
+      Unauthorized use, disclosure or distribution is prohibited and may be unlawful.
+    </p>
+  </td>
+  </tr>
+  </table>
+</body>
+
+</html>

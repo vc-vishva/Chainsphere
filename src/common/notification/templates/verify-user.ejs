@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Email</title>
+  </head>
+  <body>
+    <div
+      style="
+        width: 500px;
+        background-color: #eaeff3;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+      "
+    >
+      <div style="text-align: center; padding: 20px">
+        <img
+          src="https://vc-development-public.s3.ap-south-1.amazonaws.com/file-170264536937232-beautiful-shot-small-lake-with-wooden-rowboat-focus-breathtaking-clouds-sky.jpg"
+          height="90"
+          alt="Logo"
+        />
+      </div>
+      <div style="background-color: #ffffff; padding: 20px; color: #000; border-radius: 4px">
+        <h2 style="color: #1976d2; font-size: 24px; font-family: Helvetica; font-weight: bold; text-align: center">
+          Welcome To EveryGive
+        </h2>
+        <h3 style="color: #000; line-height: 30px; font-family: Helvetica; font-size: 16px">Hello <%= name %></h3>
+        <p style="line-height: 20px; font-family: Helvetica; font-size: 16px">
+          Thank you for joining EveryGive.
+        </p>
+        <p style="line-height: 20px; font-family: Helvetica; font-size: 16px">
+          To complete your registration, please verify your email by clicking the link below.
+        </p>
+        <h3 style="color: #1976d2; line-height: 30px; font-family: Helvetica; font-size: 16px; text-align: center">
+          <td style="padding: 16px 0">
+            <table
+              style="
+                background: linear-gradient(90deg, rgba(31, 103, 232, 1) 0%, rgba(37, 164, 251, 1) 100%);
+                background-color: #1976d2;
+                border-radius: 3px;
+                border-collapse: collapse;
+                max-width: 180px;
+                width: 100%;
+              "
+              align="center"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+            >
+              <tr>
+                <td style="padding: 10px; text-align: center">
+                  <a
+                    style="
+                      color: #ffffff;
+                      font-family: Helvetica;
+                      font-size: 15px;
+                      font-weight: 600;
+                      text-align: center;
+                      text-decoration: none;
+                      display: block;
+                    "
+                    href="<%=redirectUrl %>"
+                    >Verify Email</a
+                  >
+                </td>
+              </tr>
+            </table>
+          </td>
+        </h3>
+        <p style="line-height: 20px; font-family: Helvetica; font-size: 16px; text-align: center">Enjoy!</p>
+      </div>
+      <p style="font-size: 12px; color: #536471; line-height: 20px; font-family: Helvetica; text-align: center">
+        <a href="" target="_blank" style="color: #536471; text-decoration: none">EveryGive</a>
+      </p>
+    </div>
+  </body>
+</html>

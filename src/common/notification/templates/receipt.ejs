@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Donation Receipt</title>
+</head>
+
+<body>
+  <table style="width:80%;border: 1px solid #ccc;margin: 25px auto 20px; border-radius: 5px;background-color: #f8f8f8;">
+    <tr>
+      <td style="background-color: #fff;padding: 20px 30px;text-align:center;">
+        <h3 style="margin-top: 0;"><u>Donation Receipt</u></h3>
+        <img style="max-width: 250px;"
+          src="https://vc-development-public.s3.ap-south-1.amazonaws.com/bannerLogo170730536190733-1707305361907.png" alt="Pro-Life Prosper" />
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 15px 50px 2.5px 50px;">
+        <p style="line-height: 1.6; margin-top: 0px; font-size: 12px; font-weight: 500;">
+          <%=organizationName%>, <br>
+         <%=organizationAddress%>, <br>
+          <%=organizationEmail%> <br>
+           <%=organizationPhone%> </br>
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding: 2.5px 50px 5px 50px;">
+        <table
+          style="width: 100%;border: 1px solid #eee;margin: 0 auto; border-radius: 5px;background-color: #fff;padding: 20px;">
+          <tr>
+            <td colspan="2" style="text-align: center;">
+              <p style="margin:0;">You have donated</p>
+            </td>
+          </tr>
+          <tr></tr>
+          <td colspan="2" style="text-align: center;">
+            <p style="font-size: 16px;margin-top: 5px; margin-bottom: 0px; font-weight: bold;"><strong>$<%=donationAmount %></strong>
+            </p>
+          </td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">
+        <p style="font-size: 12px;margin-top: 7px;color: #666;margin-bottom:7px;">Donation Date</p>
+      </td>
+      <td style="text-align: right;">
+        <p style="font-size: 12px;margin-top: 7px;font-weight: 500;font-weight: 500; color: #000000;margin-bottom: 7px;">
+
+          <%=donationDate%>
+
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">
+        <p style="font-size: 12px;margin-top: 7px;color: #666;margin-bottom:7px;">Donor Name</p>
+      </td>
+      <td style="text-align: right;">
+        <p style="font-size: 12px;margin-top: 7px;font-weight: 500; color: #000000;margin-bottom:7px;">
+
+          <%=donorName%>
+
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">
+        <p style="font-size: 12px;margin-top: 7px;color: #666;margin-bottom:7px;">Merchant Name</p>
+      </td>
+      <td style="text-align: right;">
+        <p style="font-size: 12px;margin-top: 7px;font-weight: 500; color: #000000;margin-bottom:7px;">
+
+          <%=organizationName%>
+
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">
+        <p style="font-size: 12px;margin-top: 7px;color: #666;margin-bottom:7px;">Subscription</p>
+      </td>
+      <td style="text-align: right;">
+        <p style="font-size: 12px;margin-top: 7px;color: blue;margin-bottom:0px;">
+
+          <%=donationType%>
+
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr></tr>
+    <td style="text-align: left;">
+      <p style="font-size: 12px;margin-top: 7px;color: #666;margin-bottom:7px;">Payment Method</p>
+    </td>
+    <td style="text-align: right;">
+      <p style="font-size: 12px;margin-top: 7px;font-weight: 500; color: #000000;margin-bottom:7px;">
+
+        <%=paymentMethod%>
+
+      </p>
+    </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr></tr>
+    <td style="text-align: left;">
+      <p style="font-size: 12px;margin-top: 7px;color: #666;margin-bottom:7px;">Surcharge</p>
+    </td>
+    <td style="text-align: right;">
+      <p style="font-size: 12px; margin-top: 7px; font-weight: 500; color: #000000; margin-bottom: 7px;">
+        $<%=transactionFees%>
+      </p>
+    </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr></tr>
+    <td style="text-align: left;">
+      <p style="font-size: 12px;margin-top: 7px;color: #666;margin-bottom:7px;">Transaction #</p>
+    </td>
+    <td style="text-align: right;">
+      <p style="font-size: 12px;margin-top: 7px;font-weight: 500; color: #000000;margin-bottom:7px;">
+
+        <%=transactionId%>
+
+      </p>
+    </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;border-bottom: 1px solid #ccc;"></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;">
+        <p style="font-size: 12px;">Thank you for your generous donation!</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;">
+        <p style="margin: 0;font-size: 12px; ">Sincerely,</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: left;">
+        <p style="margin: 0; font-weight: 500; color: #000000; font-size: 12px;">
+          Pro-Life Prosper
+        </p>
+      </td>
+    </tr>
+    
+
+  </table>
+  </td>
+  </tr>
+
+   <tr>
+    <td style="padding: 0px 50px 20px 50px; text-align: center;">
+      <p style="margin: 0; font-size: 12px;">Powered by <b>Pro-Life Prosper</b></p>
+    </td>
+  </tr>
+  </tr>
+  </table>
+</body>
+
+</html>
