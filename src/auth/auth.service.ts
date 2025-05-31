@@ -54,24 +54,16 @@ export class AuthService {
   async userSignup(createUserDto: CreateUserDto): OnlyMessageResponse {
     const userWithEmail = await this.userService.getUserJson({ email: createUserDto.email, userType: 'User' });
 
-    if (userWithEmail && !userWithEmail.isGuest) {
+    if (userWithEmail) {
       throw new ConflictException(errorMessages.USER_ALREADY_REGISTERED);
     }
-    if (userWithEmail?.isGuest) {
-      if (createUserDto.password) {
-        createUserDto.password = await this.commonService.hashPassword(createUserDto.password);
-      }
-      await this.userService.updateUser({ _id: userWithEmail._id }, { ...createUserDto, isGuest: false });
-    } else {
-      createUserDto['userType'] = 'User';
+    createUserDto['userType'] = 'User';
       const user = await this.userService.createUser(createUserDto);
       const emailVerificationToken = this.commonService.generateToken(12);
-
-      await this.createEmailVerifyToken({
+        await this.createEmailVerifyToken({
         userId: user._id,
         token: emailVerificationToken,
       });
-    }
 
     return ResponseHandler.success([], successMessages.USER_SIGNUP, HttpStatus.OK);
   }

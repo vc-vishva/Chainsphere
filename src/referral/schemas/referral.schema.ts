@@ -33,6 +33,9 @@ export class Referral {
     default: 0,
   })
   totalBusiness: number;
+
+  @Prop({ type: SchemaTypes.Boolean, default: false })
+  isAmbassador: boolean;
 }
 
 /**

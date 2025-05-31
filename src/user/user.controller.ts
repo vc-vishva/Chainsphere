@@ -3,6 +3,8 @@ import {
   Controller,
   Get,
   Put,
+  Query,
+  Req,
   UseGuards,
  
 } from '@nestjs/common';
@@ -14,13 +16,15 @@ import { ChangePasswordDto } from './dtos/change-password.dto';
 import { User } from './schemas/user.schema';
 import { CheckFormFillResponse,  } from './types';
 import { UserService } from './user.service';
+import { UserTransactionsDto } from './dtos/user-transactions.dto';
+import { TransactionService } from 'src/transaction/transaction.service';
 
 /**
  * Description - User Controller
  */
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService, private readonly transactionService: TransactionService) {}
 
 
   /**
@@ -35,5 +39,12 @@ export class UserController {
     return this.userService.changePassword(user._id, changePasswordDto);
   }
 
-
+ @Get()
+  async getUserTransactions(
+    @Req() req,
+    @Query() query: UserTransactionsDto,
+  ) {
+    const userId = req.user._id; // assuming user id stored here by auth middleware
+    return this.transactionService.getUserTransactions(userId, query);
+  }
 }

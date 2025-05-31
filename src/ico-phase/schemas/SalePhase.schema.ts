@@ -24,6 +24,12 @@ export class SalePhase {
   tokenCap: number;
 
   @Prop({
+  type: SchemaTypes.Number,
+  default: 0, // initialize with 0
+  })
+  sold: number;
+
+  @Prop({
     type: SchemaTypes.Boolean,
     default: false,
   })

@@ -18,16 +18,11 @@ import { ResponseHandler } from '../utils/response-handler';
 import { ChangePasswordDto } from './dtos/change-password.dto';
 import { User, UserDocument } from './schemas/user.schema';
 import {
-  CheckFormFillResponse,
-  GetUserInformation,
-  MerchantStats,
-  UserInformation,
   UserQueryObject,
-  ZipCodeResponse,
 } from './types';
 import { Model, Types, UpdateQuery, UpdateWriteOpResult } from 'mongoose';
-import { CreateAdminDto } from 'src/auth/dtos/create.admin.dto';
 import { CreateUserDto } from 'src/auth/dtos/create.user.dto';
+import { PurchaseOrder, PurchaseOrderDocument } from 'src/token-purchase/schemas/token-purchase.schema';
 
 /**
  * Description - User service
@@ -58,11 +53,6 @@ export class UserService {
     };
     return this.userModel.create(userProfile);
   }
-
- 
-
- 
-
   /**
    * Description - Get user common function
    * @param query UserQueryObject

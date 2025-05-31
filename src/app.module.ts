@@ -31,6 +31,7 @@ import { WalletModule } from './wallet/wallet.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AdminModule } from './admin/admin.module';
 import { SecurityModule } from './security/security.module';
+import { SeedsService } from './seeds/seed.service';
 
 
 @Module({
@@ -113,6 +114,7 @@ import { SecurityModule } from './security/security.module';
   }),
 },
     LogCleanerService,
+    SeedsService
   ],
 })
 export class AppModule implements NestModule {

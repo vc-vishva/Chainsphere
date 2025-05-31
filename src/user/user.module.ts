@@ -6,6 +6,7 @@ import { CommonService } from '../common/common.service';
 import { User, UserDocument, UserSchema } from './schemas/user.schema';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
+import { TransactionModule } from 'src/transaction/transaction.module';
 
 @Global()
 @Module({
@@ -34,9 +35,10 @@ import { UserService } from './user.service';
 
     
     ]),
+    TransactionModule
   ],
   controllers: [UserController, ],
-  providers: [UserService, ],
+  providers: [UserService,],
   exports: [UserService],
 })
 export class UserModule {}
