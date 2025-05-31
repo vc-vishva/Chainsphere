@@ -1,10 +1,28 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Types, SchemaTypes, HydratedDocument } from "mongoose";
-import { User } from "src/user/schemas/user.schema";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Types, SchemaTypes, HydratedDocument } from 'mongoose';
 
-@Schema({ timestamps: true, collection: 'transactions' })
-export class Transactions {
+@Schema({ timestamps: false, collection: 'transactions' })
+export class Transaction {
   _id: Types.ObjectId;
+
+  @Prop({
+    type: SchemaTypes.ObjectId,
+    required: true,
+  })
+  userId: Types.ObjectId;
+
+  @Prop({
+    type: SchemaTypes.Number,
+    required: true,
+  })
+  amount: number;
+
+  @Prop({
+    type: SchemaTypes.String,
+    required: true,
+    enum: ['purchase', 'withdrawal'],
+  })
+  type: string;
 
   @Prop({
     type: SchemaTypes.String,
@@ -13,17 +31,14 @@ export class Transactions {
   currency: string;
 
   @Prop({
-    type: SchemaTypes.String,
-    required: true,
+    type: SchemaTypes.Date,
+    default: Date.now,
   })
-  notes: string;
-
-   @Prop({ type: SchemaTypes.ObjectId, ref: User.name })
-  createdBy: Types.ObjectId;
- 
+  date: Date;
 }
+
 /**
  * @ignore
  */
-export const TransactionsSchema = SchemaFactory.createForClass(Transactions);
-export type TransactionsDocument = HydratedDocument<Transactions>;
+export const TransactionSchema = SchemaFactory.createForClass(Transaction);
+export type TransactionDocument = HydratedDocument<Transaction>;
