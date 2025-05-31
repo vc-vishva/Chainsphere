@@ -72,9 +72,6 @@ export class UserService {
   const queryBuilder = this.userModel.findOne(query);
   return shouldGetPassword ? queryBuilder.select('+password') : queryBuilder.exec();
 }
-
-
-
   /**
    * Description - Change Password
    * @param user
@@ -137,4 +134,70 @@ export class UserService {
     return this.userModel.updateOne(filterQuery, updateQuery, { new: true });
   }
 
+  async getStats() {
+    const [result] = await this.userModel.aggregate([
+      {
+        $facet: {
+          totalUsers: [{ $count: 'count' }],
+          purchaseStats: [
+            {
+              $lookup: {
+                from: 'purchase-orders',
+                localField: '_id',
+                foreignField: 'userId',
+                as: 'purchases',
+              },
+            },
+            { $unwind: '$purchases' },
+            { $match: { 'purchases.status': 'confirmed' } },
+            {
+              $group: {
+                _id: null,
+                totalPurchases: { $sum: 1 },
+                totalTokensSold: { $sum: '$purchases.tokenAmount' },
+                totalUsdVolume: { $sum: '$purchases.usdValue' },
+              },
+            },
+          ],
+          walletStats: [
+            {
+              $lookup: {
+                from: 'wallets',
+                localField: '_id',
+                foreignField: 'userId',
+                as: 'wallet',
+              },
+            },
+            { $unwind: '$wallet' },
+            {
+              $group: {
+                _id: null,
+                totalCspBalance: { $sum: '$wallet.cspBalance' },
+                totalInvestmentBalance: { $sum: '$wallet.investmentBalance' },
+              },
+            },
+          ],
+        },
+      },
+      {
+        $project: {
+          totalUsers: { $arrayElemAt: ['$totalUsers.count', 0] },
+          totalPurchases: { $arrayElemAt: ['$purchaseStats.totalPurchases', 0] },
+          totalTokensSold: { $arrayElemAt: ['$purchaseStats.totalTokensSold', 0] },
+          totalUsdVolume: { $arrayElemAt: ['$purchaseStats.totalUsdVolume', 0] },
+          totalCspBalance: { $arrayElemAt: ['$walletStats.totalCspBalance', 0] },
+          totalInvestmentBalance: { $arrayElemAt: ['$walletStats.totalInvestmentBalance', 0] },
+        },
+      },
+    ]);
+
+    return {
+      totalUsers: result?.totalUsers || 0,
+      totalPurchases: result?.totalPurchases || 0,
+      totalTokensSold: result?.totalTokensSold || 0,
+      totalUsdVolume: result?.totalUsdVolume || 0,
+      totalCspBalance: result?.totalCspBalance || 0,
+      totalInvestmentBalance: result?.totalInvestmentBalance || 0,
+    };
+  }
 }
