@@ -76,13 +76,15 @@ export const successMessages = {
   SUCCESSFULLY_ADDED: 'added successfully.',
   SUCCESSFULLY_FAILED: 'failed.',
   SUCCESSFULLY_EXPORTED: 'data export successFully.',
-  SUCCESSFULLY_APPLIED_MERCHANT_REQUEST:
-    'Requested merchant application! Please check your registered email to complete onboarding process.',
-  SUCCESSFULLY_APPLIED_MERCHANT_REQUEST_GETTRX:
-    'Your application for gettrx was successful. Please complete the onboarding process',
-  STORED_SUCCESSFULLY: 'Information stored successfully.',
-  RESCHEDULED_SUCCESSFULLY: 'rescheduled successfully.',
-  SEND_DONAION_ZIP_FILE: 'Please check your email. We will send the zip file for the donation records to your email',
+  SALE_PHASE_EXTENDED: 'Sale phase extended successfully',
+SALE_PHASE_ENDED: 'Sale phase ended successfully',
+TOKEN_DISTRIBUTION_FETCHED: 'Token distribution fetched successfully',
+REFERRAL_OVERVIEW_FETCHED: 'Referral overview fetched successfully',
+MOCK_BALANCE_RETRIEVED: 'Mock balance retrieved successfully',
+WITHDRAWAL_SUCCESS: 'Withdrawal successful',
+
+
+
 };
 
 /**

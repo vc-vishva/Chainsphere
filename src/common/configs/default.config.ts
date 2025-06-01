@@ -38,7 +38,7 @@ export const Defaults = {
   RESET_TOKEN_EXPIRY: '10m',
   EMAIL_VERIFICATION_TOKEN_EXPIRY: '10m',
   RESET_PASSWORD_URL: `${process.env.FRONTEND_URL}/reset-password/`, //need to add frontend url that will call resetpassword.
-  RESET_PASSWORD_URL_DONOR: `${process.env.FRONTEND_URL}/donor/auth/reset-password/`, //need to add frontend url that will call resetpassword.
+  RESET_PASSWORD_URL_DONOR: `${process.env.FRONTEND_URL}/auth/reset-password/`, //need to add frontend url that will call resetpassword.
   ADMIN_RESET_PASSWORD_URL: `${process.env.ADMIN_FRONTEND_URL}/auth/reset-password/`, //need to add frontend url that will call resetpassword.
   UPDATE_PASSWORD: 'Your Password Has Been Updated Successfully',
 };

@@ -1,7 +1,9 @@
-import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { TokenPurchaseService } from './token-purchase.service';
 import { PurchaseDto } from './dtos/purchase.dto';
+import { RequestVerify } from 'src/common/guards/request-verify.guard';
 
+@UseGuards(RequestVerify)
 @Controller('token-purchase')
 export class TokenPurchaseController {
   constructor(private readonly tokenPurchaseService: TokenPurchaseService) {}

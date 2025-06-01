@@ -20,7 +20,7 @@ export class TokenPurchaseService {
     private readonly purchaseOrderModel: Model<PurchaseOrderDocument>,
   ) {}
 
-  async purchaseToken(dto: PurchaseDto) {
+  async purchaseToken(dto: PurchaseDto) :Promise<object>{
   const session = await this.salePhaseModel.db.startSession();
   session.startTransaction();
 
@@ -149,6 +149,5 @@ export class TokenPurchaseService {
 
   return ResponseHandler.success(order[0], successMessages.SUCCESSFULLY_CREATED, HttpStatus.CREATED);
 }
-
 
 }
